@@ -1,0 +1,14 @@
+﻿<Window x:Class="Zen.EveCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ToolBar Name="PageToolbar" />
+        <TabControl Name="TabHost" Grid.Row="1" />
+
+    </Grid>
+</Window>

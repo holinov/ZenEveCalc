@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Zen.EveCalc.Controls.BlueprintDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel" xmlns:controls="clr-namespace:Zen.EveCalc.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Name="ctrl">
+
+    <Grid DataContext="{Binding ElementName=ctrl,Path=Blueprint}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="83*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock>Название</TextBlock>
+        <TextBox Text="{Binding Name}" Grid.Column="1"></TextBox>
+        <TextBlock Grid.Row="1">Цена продажи</TextBlock>
+        <TextBox Text="{Binding SellPrice}"  Grid.Row="1" Grid.Column="1" ></TextBox>
+
+        <TextBlock Grid.Row="2">Производит за запуск</TextBlock>
+        <TextBox Text="{Binding Produces}"  Grid.Row="2" Grid.Column="1" ></TextBox>
+
+        <TextBlock Grid.Row="3">Количество запусков</TextBlock>
+        <TextBox Text="{Binding Runs}"  Grid.Row="3" Grid.Column="1" ></TextBox>
+
+
+        <TextBlock Grid.Row="4">Цена единицы</TextBlock>
+        <controls:SplittingBox Suffix=" ISK"  FloatValue="{Binding ItemProductionPrice,Mode=OneWay}"  Grid.Row="4" Grid.Column="1" />
+
+        <TextBlock Grid.Row="5">Цена закупки</TextBlock>
+        <controls:SplittingBox Suffix=" ISK"  FloatValue="{Binding TotalPrice,Mode=OneWay}"  Grid.Row="5" Grid.Column="1" ></controls:SplittingBox>
+
+        <TextBlock Grid.Row="6">Прибыль</TextBlock>
+        <controls:SplittingBox Suffix=" ISK" FloatValue="{Binding Income,Mode=OneWay}"  Grid.Row="6" Grid.Column="1" />
+
+        <TextBlock Grid.Row="7">Объем материалов</TextBlock>
+        <controls:SplittingBox FloatValue="{Binding TotaMaterialsVolume,Mode=OneWay}"  Grid.Row="7" Grid.Column="1" />
+
+        <TextBlock Grid.Row="8">Объем результата</TextBlock>
+            <controls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="8" Grid.Column="1" />
+        
+        <GroupBox Grid.Row="9" Grid.ColumnSpan="2" Header="Материалы">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ToolBar>
+                    <ComboBox MinWidth="70" Name="matSelect" ItemsSource="{Binding ElementName=ctrl,Path=Materials}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate DataType="dataModel:Material">
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Click="AddClick" VerticalAlignment="Bottom" Height="22">Добавить</Button>
+                    <Button Click="DownloadMaterialsClick" VerticalAlignment="Bottom" Height="22">Получить материалы</Button>
+                </ToolBar>
+                <ListBox Grid.Row="1" MaxHeight="500" ItemsSource="{Binding Materials}" Name="matList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="dataModel:Material">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text=" Цена: "> </TextBlock>
+                                <TextBlock Text="{Binding Price}"></TextBlock>
+                                <TextBlock Text=" ISK Кол-во: "></TextBlock>
+                                <TextBox Text="{Binding Ammount}"></TextBox>
+                                <TextBlock Text=" Итого: "></TextBlock>
+                                <TextBlock Text="{Binding TotalPrice}"></TextBlock>
+                                <TextBlock Text=" ISK Объем перевозки"></TextBlock>
+                                <TextBlock Text="{Binding TotalVolume}"></TextBlock>
+                                <TextBlock Text=" "></TextBlock>
+                                <Button Click="DellClick" Tag="{Binding}">Удалить</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
