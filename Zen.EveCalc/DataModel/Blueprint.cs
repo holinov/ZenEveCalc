@@ -26,6 +26,7 @@ namespace Zen.EveCalc.DataModel
             {
                 if (value == _produces) return;
                 _produces = value;
+                OnPropertyChanged();
                 Recount();
             }
         }
@@ -37,6 +38,7 @@ namespace Zen.EveCalc.DataModel
             {
                 if (value == _runs) return;
                 _runs = value;
+                OnPropertyChanged();
                 Recount();
             }
         }
@@ -48,6 +50,7 @@ namespace Zen.EveCalc.DataModel
             {
                 if (Equals(value, _materials)) return;
                 _materials = value;
+                OnPropertyChanged();
                 Recount();
             }
         }
@@ -60,7 +63,7 @@ namespace Zen.EveCalc.DataModel
                 if (value == _sellPrice) return;
                 _sellPrice = value;
                 OnPropertyChanged();
-                OnPropertyChanged("Income");
+                Recount();
             }
         }
 
@@ -71,6 +74,7 @@ namespace Zen.EveCalc.DataModel
             OnPropertyChanged("TotaMaterialsVolume");
             OnPropertyChanged("TotaVolume");
             OnPropertyChanged("Income");
+            OnPropertyChanged("IncomePercent");
         }
 
         public float ItemProductionPrice
@@ -86,6 +90,11 @@ namespace Zen.EveCalc.DataModel
         public float Income
         {
             get { return SellPrice*Runs - TotalPrice; }
+        }
+
+        public float IncomePercent
+        {
+            get { return (SellPrice / ItemProductionPrice - 1) * 100; }
         }
 
         public float TotaMaterialsVolume

@@ -113,26 +113,9 @@ namespace Zen.EveCalc.Controls
             }
         }
     }
-
-    public class SplittingBox : TextBlock
+    public enum FormatType
     {
-        public string Suffix { get; set; }
-
-        public float FloatValue
-        {
-            get { return (float)GetValue(FloatValueProperty); }
-            set { SetValue(FloatValueProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for FloatValue.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty FloatValueProperty =
-            DependencyProperty.Register("FloatValue", typeof(float), typeof(SplittingBox), new PropertyMetadata((o, args) =>
-                {
-                    var val = (float) args.NewValue;
-                    var mb = (SplittingBox) o;
-                    mb.SetValue(TextProperty, string.Format("{0:0,0.00}", val) + mb.Suffix);
-                }));
-
-
+        None,
+        PositiveGreen
     }
 }

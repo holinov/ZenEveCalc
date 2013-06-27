@@ -79,6 +79,7 @@
     <Compile Include="Controls\Blueprints.cs" />
     <Compile Include="Controls\IPageControl.cs" />
     <Compile Include="Controls\Materials.cs" />
+    <Compile Include="Controls\SplittingBox.cs" />
     <Compile Include="Core\AppCoreBuilder.cs" />
     <Compile Include="Core\AppScope.cs" />
     <Compile Include="Core\DataStorage\Raven\Indexes\BlueprintsIndex.cs" />

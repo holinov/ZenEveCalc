@@ -22,6 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock>Название</TextBlock>
@@ -43,15 +44,18 @@
         <controls:SplittingBox Suffix=" ISK"  FloatValue="{Binding TotalPrice,Mode=OneWay}"  Grid.Row="5" Grid.Column="1" ></controls:SplittingBox>
 
         <TextBlock Grid.Row="6">Прибыль</TextBlock>
-        <controls:SplittingBox Suffix=" ISK" FloatValue="{Binding Income,Mode=OneWay}"  Grid.Row="6" Grid.Column="1" />
-
-        <TextBlock Grid.Row="7">Объем материалов</TextBlock>
-        <controls:SplittingBox FloatValue="{Binding TotaMaterialsVolume,Mode=OneWay}"  Grid.Row="7" Grid.Column="1" />
-
-        <TextBlock Grid.Row="8">Объем результата</TextBlock>
-            <controls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="8" Grid.Column="1" />
+        <controls:SplittingBox FormatType="PositiveGreen" Suffix=" ISK" FloatValue="{Binding Income,Mode=OneWay}"  Grid.Row="6" Grid.Column="1" />
         
-        <GroupBox Grid.Row="9" Grid.ColumnSpan="2" Header="Материалы">
+        <TextBlock Grid.Row="7">Прибыль (%)</TextBlock>
+        <controls:SplittingBox FormatType="PositiveGreen" Suffix=" %" FloatValue="{Binding IncomePercent,Mode=OneWay}"  Grid.Row="7" Grid.Column="1" />
+
+        <TextBlock Grid.Row="8">Объем материалов</TextBlock>
+        <controls:SplittingBox FloatValue="{Binding TotaMaterialsVolume,Mode=OneWay}"  Grid.Row="8" Grid.Column="1" />
+
+        <TextBlock Grid.Row="9">Объем результата</TextBlock>
+            <controls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="9" Grid.Column="1" />
+        
+        <GroupBox Grid.Row="10" Grid.ColumnSpan="2" Header="Материалы">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
