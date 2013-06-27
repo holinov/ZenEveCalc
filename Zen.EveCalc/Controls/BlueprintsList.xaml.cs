@@ -27,15 +27,17 @@ namespace Zen.EveCalc.Controls
     {
         private readonly Func<IRepositoryWithGuid<Blueprint>> _blueprintsRepos;
         private Func<IEveItemRepository> _eveItemRepos;
+        private Func<IProductionInfoRepository> _prudoctionInfoRepos;
 
         private Blueprints _blueprints;
         private List<Blueprint> _toRemove=new List<Blueprint>(); 
 
         public BlueprintsList(Func<IRepositoryWithGuid<Blueprint>> blueprintsRepos,
-                              Func<IEveItemRepository> eveItemRepos)
+                              Func<IEveItemRepository> eveItemRepos, Func<IProductionInfoRepository> prudoctionInfoRepos)
         {
             _blueprintsRepos = blueprintsRepos;
             _eveItemRepos = eveItemRepos;
+            _prudoctionInfoRepos = prudoctionInfoRepos;
             InitializeComponent();
         }
 
@@ -127,6 +129,23 @@ namespace Zen.EveCalc.Controls
                             Name = "Удалить",
                             Action = p =>
                                 {
+                                }
+                        },
+                    new PageCommand
+                        {
+                            Name = "Произвести",
+                            Action = p =>
+                                {
+                                    var curBp = bpDetails.Blueprint;
+                                    using (var repos=_prudoctionInfoRepos())
+                                    {
+
+                                        ProductionInfo prodIndo = curBp.MakeProduct();
+                                        prodIndo.ProducingIn = "Kino";
+                                        prodIndo.SellingIn = "Jita";
+                                        repos.Store(prodIndo);
+                                        repos.SaveChanges();
+                                    }
                                 }
                         }
                 }.ToArray();

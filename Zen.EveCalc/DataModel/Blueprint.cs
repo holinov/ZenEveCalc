@@ -135,5 +135,22 @@ namespace Zen.EveCalc.DataModel
             }
             Recount();
         }
+
+        public ProductionInfo MakeProduct()
+        {
+            return new ProductionInfo()
+                {
+                    ProductName=Name.Replace(" Blueprint",""),
+                    SellPrice = SellPrice,
+                    SellAmmount = Runs*Produces,
+                    MaterialsTransport = TotaMaterialsVolume,
+                    ProductionTransport = TotaVolume,
+                    EstimatedIncome = Income,
+                    EstimatedProfit = SellPrice*Runs*Produces,
+                    SoldOut=0,
+                    RealProfit=0.0F,
+                    UsedBpData=this
+                };
+        }
     }
 }
