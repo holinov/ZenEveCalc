@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,12 +40,7 @@ namespace Zen.EveCalc.Controls
 
         public void Init()
         {
-            using (var r = EveItemRepos())
-            {
-                _items = new EveItems(r.GetAll().ToList());
-            }
-            ItemsGrid.ItemsSource = _items;
-            _itemsToDelete = new List<EveItem>();
+            Load();
             Commands = new List<PageCommand>()
                 {
                     new PageCommand
@@ -123,6 +117,16 @@ namespace Zen.EveCalc.Controls
                 }.ToArray();
         }
 
+        private void Load()
+        {
+            using (var r = EveItemRepos())
+            {
+                _items = new EveItems(r.GetAll().ToList());
+            }
+            ItemsGrid.ItemsSource = _items;
+            _itemsToDelete = new List<EveItem>();
+        }
+
         /*private class SaveCommand : IPageCommand
         {
             private Func<IEveItemRepository> _eveItemRepos;
@@ -150,6 +154,11 @@ namespace Zen.EveCalc.Controls
         }*/
 
         public PageCommand[] Commands { get; private set; }
+        public void Show()
+        {
+            Load();
+        }
+
         public UIElement PageContent { get { return this; } }
         public UIElement Header { get{return new TextBlock(new Run("EVE DB"));} }
         public int SortOrder { get { return 0; } }
@@ -160,14 +169,5 @@ namespace Zen.EveCalc.Controls
             get { return _eveItemRepos; }
             set { _eveItemRepos = value; }
         }
-    }
-
-    public class EveItems:ObservableCollection<EveItem>
-    {
-        public EveItems(){}
-
-        public EveItems(IEnumerable<EveItem> collection):base(collection){}
-
-        public EveItems(List<EveItem> list):base(list){}
     }
 }

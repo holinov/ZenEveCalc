@@ -7,8 +7,6 @@ namespace Zen.EveCalc.Controls
 {
     public class SplittingBox : TextBlock
     {
-        public string Suffix { get; set; }
-
         public float FloatValue
         {
             get { return (float)GetValue(FloatValueProperty); }
@@ -19,6 +17,12 @@ namespace Zen.EveCalc.Controls
         {
             get { return (FormatType) GetValue(FormatTypeProperty); }
             set { SetValue(FormatTypeProperty, value); }
+        }
+
+        public string Suffix
+        {
+            get { return (string) GetValue(SuffixProperty); }
+            set { SetValue(SuffixProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for FloatValue.  This enables animation, styling, binding, etc...
@@ -37,9 +41,21 @@ namespace Zen.EveCalc.Controls
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                    mb.SetValue(TextProperty, string.Format("{0:0,0.00}", val) + mb.Suffix);
+                    mb.SetValue(TextProperty, string.Format(mb.DigitFormat + " {1}", val,
+                                                            mb.Suffix));
                 }));
 
-        public static readonly DependencyProperty FormatTypeProperty = DependencyProperty.Register("FormatType", typeof (FormatType), typeof (SplittingBox), new PropertyMetadata(default(FormatType)));
+        protected string DigitFormat
+        {
+            get { return _digitFormat; }
+            set { _digitFormat = value; }
+        }
+
+        public static readonly DependencyProperty FormatTypeProperty = 
+            DependencyProperty.Register("FormatType", typeof (FormatType), typeof (SplittingBox), new PropertyMetadata(default(FormatType)));
+        public static readonly DependencyProperty SuffixProperty = 
+            DependencyProperty.Register("Suffix", typeof (string), typeof (SplittingBox), new PropertyMetadata(null));
+
+        private static string _digitFormat = "{0:0,0.00}";
     }
 }

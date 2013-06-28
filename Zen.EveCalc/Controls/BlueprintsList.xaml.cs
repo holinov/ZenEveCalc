@@ -139,7 +139,6 @@ namespace Zen.EveCalc.Controls
                                     var curBp = bpDetails.Blueprint;
                                     using (var repos=_prudoctionInfoRepos())
                                     {
-
                                         ProductionInfo prodIndo = curBp.MakeProduct();
                                         prodIndo.ProducingIn = "Kino";
                                         prodIndo.SellingIn = "Jita";
@@ -158,12 +157,16 @@ namespace Zen.EveCalc.Controls
         {
             using (var r = _blueprintsRepos())
             {
-                _blueprints = new Blueprints(r.GetAll().ToList());
+                _blueprints = new Blueprints(r.GetAll().OrderBy(b=>b.Name).ToList());
                 BPList.ItemsSource = _blueprints;
                 _toRemove.Clear();
             }
         }
 
         public PageCommand[] Commands { get; private set; }
+        public void Show()
+        {
+            Load();
+        }
     }
 }

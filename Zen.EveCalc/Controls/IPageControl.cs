@@ -11,5 +11,6 @@ namespace Zen.EveCalc.Controls
         AppScope PageSope { get; set; }
         void Init();
         PageCommand[] Commands { get; }
+        void Show();
     }
 }

@@ -123,6 +123,7 @@ namespace Zen.EveCalc
                    .PropertiesAutowired();
 
             builder.RegisterType<EveItemRepository>().AsImplementedInterfaces();
+            //builder.RegisterType<EveItemRepository>().AsImplementedInterfaces();
         }
     }
 }

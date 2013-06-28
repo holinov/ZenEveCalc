@@ -77,9 +77,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Blueprints.cs" />
+    <Compile Include="Controls\EveItems.cs" />
+    <Compile Include="Controls\FormatType.cs" />
     <Compile Include="Controls\IPageControl.cs" />
+    <Compile Include="Controls\IskBox.cs" />
+    <Compile Include="Controls\ItemsCountBox.cs" />
     <Compile Include="Controls\Materials.cs" />
+    <Compile Include="Controls\ProductionInfoCollection.cs" />
+    <Compile Include="Controls\ProductionReport.xaml.cs">
+      <DependentUpon>ProductionReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProductionReportModel.cs" />
     <Compile Include="Controls\SplittingBox.cs" />
+    <Compile Include="Controls\WeightBox.cs" />
     <Compile Include="Core\AppCoreBuilder.cs" />
     <Compile Include="Core\AppScope.cs" />
     <Compile Include="Core\DataStorage\Raven\Indexes\BlueprintsIndex.cs" />
@@ -128,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EveItemsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProductionReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

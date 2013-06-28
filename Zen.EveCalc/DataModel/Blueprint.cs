@@ -125,6 +125,11 @@ namespace Zen.EveCalc.DataModel
             }
         }
 
+        public int TotalAmmount
+        {
+            get { return Runs*Produces; }
+        }
+
         public void UpdatePrices(IRepositoryWithGuid<EveItem> repository)
         {
             var items = repository.Find(Materials.Select(m => m.Id)).ToDictionary(i=>i.Id,i=>i);

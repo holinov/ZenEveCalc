@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,15 +20,23 @@ namespace Zen.EveCalc
             _pages = App.Core.Resolve<IEnumerable<IPageControl>>().OrderBy(p => p.SortOrder).ToArray();
             foreach (var page in _pages)
             {
-                page.PageSope=App.Core.BeginScope();
-                page.Init();
-                var tab = new TabItem()
-                    {
-                        Header = page.Header,
-                        Content = page.PageContent,
-                        Tag = page
-                    };                
-                TabHost.Items.Add(tab);
+                try
+                {
+                    page.PageSope = App.Core.BeginScope();
+                    page.Init();
+                    var tab = new TabItem()
+                        {
+                            Header = page.Header,
+                            Content = page.PageContent,
+                            Tag = page
+                        };
+                    TabHost.Items.Add(tab);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+
             }
 
             TabHost.SelectionChanged += (s, o) =>
@@ -39,23 +48,24 @@ namespace Zen.EveCalc
                         {
                             PageToolbar.Items.Clear();
                             var page = (IPageControl) tab.Tag;
-                            foreach (var cmd in page.Commands)
-                            {
-                                if (cmd.Content != null)
+                            if (page.Commands != null)
+                                foreach (var cmd in page.Commands)
                                 {
-                                    PageToolbar.Items.Add(cmd.Content);
+                                    if (cmd.Content != null)
+                                    {
+                                        PageToolbar.Items.Add(cmd.Content);
+                                    }
+                                    else
+                                    {
+                                        var button = new Button()
+                                            {
+                                                Content = cmd.Name
+                                            };
+                                        PageCommand cmd1 = cmd;
+                                        button.Click += (sender, e) => cmd1.Action(page);
+                                        PageToolbar.Items.Add(button);
+                                    }
                                 }
-                                else
-                                {
-                                    var button = new Button()
-                                        {
-                                            Content = cmd.Name
-                                        };
-                                    PageCommand cmd1 = cmd;
-                                    button.Click += (sender, e) => cmd1.Action(page);
-                                    PageToolbar.Items.Add(button);
-                                }
-                            }
                         }
                     }
                 };
