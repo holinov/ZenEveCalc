@@ -84,6 +84,7 @@
     <Compile Include="Core\AppScope.cs" />
     <Compile Include="Core\DataStorage\Raven\Indexes\BlueprintsIndex.cs" />
     <Compile Include="Core\DataStorage\Raven\Repositories\IProductionInfoRepository.cs" />
+    <Compile Include="Core\DataStorage\Raven\Repositories\ProductionInfoRepository.cs" />
     <Compile Include="Core\DataStorage\RefrenceHacks.cs" />
     <Compile Include="DataModel\EveDB\BlueprintDto.cs" />
     <Compile Include="DataModel\EveDB\MaterialDto.cs" />

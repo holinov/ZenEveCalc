@@ -30,6 +30,7 @@ namespace Zen.EveCalc
                     })
                 .AddModule<RavenRepositoriesModule>()
                 .AddModule<ControlsModule>()
+                //.Configure(b=>b.RegisterAssemblyTypes(typeof(BlueprintsList).Assembly).AsSelf().AsImplementedInterfaces())
                 .Build();
 
             Core = core;
@@ -117,9 +118,8 @@ namespace Zen.EveCalc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .AssignableTo<IPageControl>()
-                   .As<IPageControl>()
                    .AsSelf()
+                   .AsImplementedInterfaces()
                    .PropertiesAutowired();
 
             builder.RegisterType<EveItemRepository>().AsImplementedInterfaces();

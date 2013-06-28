@@ -89,7 +89,7 @@ namespace Zen.EveCalc.DataModel
 
         public float Income
         {
-            get { return SellPrice*Runs - TotalPrice; }
+            get { return SellPrice*Runs*Produces - TotalPrice; }
         }
 
         public float IncomePercent
