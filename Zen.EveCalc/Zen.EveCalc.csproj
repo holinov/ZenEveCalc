@@ -86,7 +86,10 @@
     <Compile Include="Controls\Models\Blueprints.cs" />
     <Compile Include="Controls\Models\EveItems.cs" />
     <Compile Include="Controls\IPageControl.cs" />
+    <Compile Include="Controls\Models\ExportData.cs" />
+    <Compile Include="Controls\Models\ExportDbCommand.cs" />
     <Compile Include="Controls\Models\GlobalSettingViewModel.cs" />
+    <Compile Include="Controls\Models\ImportDbCommand.cs" />
     <Compile Include="Controls\Models\JobsModelData.cs" />
     <Compile Include="Controls\Models\Materials.cs" />
     <Compile Include="Controls\Models\ProductionInfoCollection.cs" />
@@ -110,34 +113,34 @@
     <Compile Include="DataModel\EveItemBase.cs" />
     <Compile Include="DataModel\ProductionInfo.cs" />
     <Compile Include="DataModel\ProductionJob.cs" />
-    <Compile Include="Properties\AspMvcActionAttribute.cs" />
-    <Compile Include="Properties\AspMvcActionSelectorAttribute.cs" />
-    <Compile Include="Properties\AspMvcAreaAttribute.cs" />
-    <Compile Include="Properties\AspMvcControllerAttribute.cs" />
-    <Compile Include="Properties\AspMvcDisplayTemplateAttribute.cs" />
-    <Compile Include="Properties\AspMvcEditorTemplateAttribute.cs" />
-    <Compile Include="Properties\AspMvcMasterAttribute.cs" />
-    <Compile Include="Properties\AspMvcModelTypeAttribute.cs" />
-    <Compile Include="Properties\AspMvcPartialViewAttribute.cs" />
-    <Compile Include="Properties\AspMvcSupressViewErrorAttribute.cs" />
-    <Compile Include="Properties\AspMvcViewAttribute.cs" />
-    <Compile Include="Properties\BaseTypeRequiredAttribute.cs" />
-    <Compile Include="Properties\CanBeNullAttribute.cs" />
-    <Compile Include="Properties\CannotApplyEqualityOperatorAttribute.cs" />
-    <Compile Include="Properties\ContractAnnotationAttribute.cs" />
-    <Compile Include="Properties\ImplicitUseKindFlags.cs" />
-    <Compile Include="Properties\ImplicitUseTargetFlags.cs" />
-    <Compile Include="Properties\InstantHandleAttribute.cs" />
-    <Compile Include="Properties\InvokerParameterNameAttribute.cs" />
-    <Compile Include="Properties\MeansImplicitUseAttribute.cs" />
-    <Compile Include="Properties\NotifyPropertyChangedInvocatorAttribute.cs" />
-    <Compile Include="Properties\NotNullAttribute.cs" />
-    <Compile Include="Properties\PathReferenceAttribute.cs" />
-    <Compile Include="Properties\PublicAPIAttribute.cs" />
-    <Compile Include="Properties\PureAttribute.cs" />
-    <Compile Include="Properties\RazorSectionAttribute.cs" />
-    <Compile Include="Properties\StringFormatMethodAttribute.cs" />
-    <Compile Include="Properties\UsedImplicitlyAttribute.cs" />
+    <Compile Include="Annotations\AspMvcActionAttribute.cs" />
+    <Compile Include="Annotations\AspMvcActionSelectorAttribute.cs" />
+    <Compile Include="Annotations\AspMvcAreaAttribute.cs" />
+    <Compile Include="Annotations\AspMvcControllerAttribute.cs" />
+    <Compile Include="Annotations\AspMvcDisplayTemplateAttribute.cs" />
+    <Compile Include="Annotations\AspMvcEditorTemplateAttribute.cs" />
+    <Compile Include="Annotations\AspMvcMasterAttribute.cs" />
+    <Compile Include="Annotations\AspMvcModelTypeAttribute.cs" />
+    <Compile Include="Annotations\AspMvcPartialViewAttribute.cs" />
+    <Compile Include="Annotations\AspMvcSupressViewErrorAttribute.cs" />
+    <Compile Include="Annotations\AspMvcViewAttribute.cs" />
+    <Compile Include="Annotations\BaseTypeRequiredAttribute.cs" />
+    <Compile Include="Annotations\CanBeNullAttribute.cs" />
+    <Compile Include="Annotations\CannotApplyEqualityOperatorAttribute.cs" />
+    <Compile Include="Annotations\ContractAnnotationAttribute.cs" />
+    <Compile Include="Annotations\ImplicitUseKindFlags.cs" />
+    <Compile Include="Annotations\ImplicitUseTargetFlags.cs" />
+    <Compile Include="Annotations\InstantHandleAttribute.cs" />
+    <Compile Include="Annotations\InvokerParameterNameAttribute.cs" />
+    <Compile Include="Annotations\MeansImplicitUseAttribute.cs" />
+    <Compile Include="Annotations\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Annotations\NotNullAttribute.cs" />
+    <Compile Include="Annotations\PathReferenceAttribute.cs" />
+    <Compile Include="Annotations\PublicAPIAttribute.cs" />
+    <Compile Include="Annotations\PureAttribute.cs" />
+    <Compile Include="Annotations\RazorSectionAttribute.cs" />
+    <Compile Include="Annotations\StringFormatMethodAttribute.cs" />
+    <Compile Include="Annotations\UsedImplicitlyAttribute.cs" />
     <Compile Include="TestData.cs">
       <DependentUpon>TestData.xsd</DependentUpon>
     </Compile>
@@ -216,7 +219,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\LocalizationRequiredAttribute.cs" />
+    <Compile Include="Annotations\LocalizationRequiredAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
