@@ -112,7 +112,10 @@ namespace Zen.EveCalc.Controls
                                 Ammount = materialDto.quantity
                             });
                     }
+
+                    Blueprint.UpdatePrices(repos);
                 }
+
             }
         }
     }

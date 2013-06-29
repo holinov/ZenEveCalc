@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by steve (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="TODOLIST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TASK" maxOccurs="unbounded">
+					<xs:complexType >
+						<xs:attribute name="ALLOCATEDBY" />
+						<xs:attribute name="CALCCOST" />
+						<xs:attribute name="CALCPERCENTDONE" />
+						<xs:attribute name="CALCTIMEESTIMATE" />
+						<xs:attribute name="CALCTIMESPENT" />
+						<xs:attribute name="CATEGORY" />
+						<xs:attribute name="CATEGORY1" />
+						<xs:attribute name="CATEGORY2" />
+						<xs:attribute name="CATEGORY3" />
+						<xs:attribute name="CATEGORY4" />
+						<xs:attribute name="CATEGORY5" />
+						<xs:attribute name="CATEGORY6" />
+						<xs:attribute name="CATEGORY7" />
+						<xs:attribute name="CATEGORY8" />
+						<xs:attribute name="CATEGORY9" />
+						<xs:attribute name="COLOR" />
+						<xs:attribute name="COMMENTS" />
+						<xs:attribute name="COMMENTSTYPE" />
+						<xs:attribute name="COST" />
+						<xs:attribute name="CREATIONDATE" />
+						<xs:attribute name="CREATIONDATESTRING" />
+						<xs:attribute name="CUSTOMCOMMENTS" />
+						<xs:attribute name="DEPENDS" />
+						<xs:attribute name="DEPENDS1" />
+						<xs:attribute name="DEPENDS2" />
+						<xs:attribute name="DEPENDS3" />
+						<xs:attribute name="DEPENDS4" />
+						<xs:attribute name="DEPENDS5" />
+						<xs:attribute name="DEPENDS6" />
+						<xs:attribute name="DEPENDS7" />
+						<xs:attribute name="DEPENDS8" />
+						<xs:attribute name="DEPENDS9" />
+						<xs:attribute name="DONEDATE" />
+						<xs:attribute name="DONEDATESTRING" />
+						<xs:attribute name="DUEDATE" />
+						<xs:attribute name="DUEDATESTRING" />
+						<xs:attribute name="EXTERNALID" />
+						<xs:attribute name="FILEREFPATH" />
+						<xs:attribute name="FLAG" />
+						<xs:attribute name="ICONINDEX" />
+						<xs:attribute name="ID" />
+						<xs:attribute name="LASTMOD" />
+						<xs:attribute name="LASTMODSTRING" />
+						<xs:attribute name="NUMCATEGORY" />
+						<xs:attribute name="NUMDEPENDS" />
+						<xs:attribute name="NUMPERSON" />
+						<xs:attribute name="PERCENTDONE" />
+						<xs:attribute name="PERSON" />
+						<xs:attribute name="PERSON1" />
+						<xs:attribute name="PERSON2" />
+						<xs:attribute name="PERSON3" />
+						<xs:attribute name="PERSON4" />
+						<xs:attribute name="PERSON5" />
+						<xs:attribute name="PERSON6" />
+						<xs:attribute name="PERSON7" />
+						<xs:attribute name="PERSON8" />
+						<xs:attribute name="PERSON9" />
+						<xs:attribute name="POS" />
+						<xs:attribute name="PRIORITY" />
+						<xs:attribute name="PRIORITYCOLOR" />
+						<xs:attribute name="PRIORITYWEBCOLOR" />
+						<xs:attribute name="RISK" />
+						<xs:attribute name="STARTDATE" />
+						<xs:attribute name="STARTDATESTRING" />
+						<xs:attribute name="STATUS" />
+						<xs:attribute name="TEXTCOLOR" />
+						<xs:attribute name="TEXTWEBCOLOR" />
+						<xs:attribute name="TIMEESTIMATE" />
+						<xs:attribute name="TIMEESTUNITS" />
+						<xs:attribute name="TIMESPENT" />
+						<xs:attribute name="TIMESPENTUNITS" />
+						<xs:attribute name="TITLE" />
+						<xs:attribute name="VERSION" />
+						<xs:attribute name="WEBCOLOR" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CATEGORY" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="CATEGORY9"  use="optional"/>
+						<xs:attribute name="CATEGORY8"  use="optional"/>
+						<xs:attribute name="CATEGORY7"  use="optional"/>
+						<xs:attribute name="CATEGORY6"  use="optional"/>
+						<xs:attribute name="CATEGORY5"  use="optional"/>
+						<xs:attribute name="CATEGORY4"  use="optional"/>
+						<xs:attribute name="CATEGORY3"  use="optional"/>
+						<xs:attribute name="CATEGORY2"  use="optional"/>
+						<xs:attribute name="CATEGORY1"  use="optional"/>
+						<xs:attribute name="CATEGORY0"  use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="STATUS" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="STATUS9"  use="optional"/>
+						<xs:attribute name="STATUS8"  use="optional"/>
+						<xs:attribute name="STATUS7"  use="optional"/>
+						<xs:attribute name="STATUS6"  use="optional"/>
+						<xs:attribute name="STATUS5"  use="optional"/>
+						<xs:attribute name="STATUS4"  use="optional"/>
+						<xs:attribute name="STATUS3"  use="optional"/>
+						<xs:attribute name="STATUS2"  use="optional"/>
+						<xs:attribute name="STATUS1"  use="optional"/>
+						<xs:attribute name="STATUS0"  use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PERSON" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="PERSON9"  use="optional"/>
+						<xs:attribute name="PERSON8"  use="optional"/>
+						<xs:attribute name="PERSON7"  use="optional"/>
+						<xs:attribute name="PERSON6"  use="optional"/>
+						<xs:attribute name="PERSON5"  use="optional"/>
+						<xs:attribute name="PERSON4"  use="optional"/>
+						<xs:attribute name="PERSON3"  use="optional"/>
+						<xs:attribute name="PERSON2"  use="optional"/>
+						<xs:attribute name="PERSON1"  use="optional"/>
+						<xs:attribute name="PERSON0"  use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ALLOCATEDBY" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="ALLOCATEDBY9"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY8"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY7"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY6"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY5"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY4"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY3"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY2"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY1"  use="optional"/>
+						<xs:attribute name="ALLOCATEDBY0"  use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="VERSION" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="VERSION9"  use="optional"/>
+						<xs:attribute name="VERSION8"  use="optional"/>
+						<xs:attribute name="VERSION7"  use="optional"/>
+						<xs:attribute name="VERSION6"  use="optional"/>
+						<xs:attribute name="VERSION5"  use="optional"/>
+						<xs:attribute name="VERSION4"  use="optional"/>
+						<xs:attribute name="VERSION3"  use="optional"/>
+						<xs:attribute name="VERSION2"  use="optional"/>
+						<xs:attribute name="VERSION1"  use="optional"/>
+						<xs:attribute name="VERSION0"  use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="CUSTOMCOMMENTSTYPE"/>
+			<xs:attribute name="PROJECTNAME"  use="optional"/>
+			<xs:attribute name="NEXTUNIQUEID" />
+			<xs:attribute name="LASTMODIFIED" />
+			<xs:attribute name="FILEVERSION"  use="optional"/>
+			<xs:attribute name="FILENAME"  use="optional"/>
+			<xs:attribute name="FILEFORMAT"  use="optional"/>
+			<xs:attribute name="EARLIESTDUEDATE"  use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

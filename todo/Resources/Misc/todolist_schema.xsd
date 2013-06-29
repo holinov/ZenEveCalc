@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by steve (EMBRACE) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+	<xsd:element name="TODOLIST">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="taskType">
+					<xsd:sequence>
+						<xsd:element name="CATEGORY" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="CATEGORY9" use="optional"/>
+								<xsd:attribute name="CATEGORY8" use="optional"/>
+								<xsd:attribute name="CATEGORY7" use="optional"/>
+								<xsd:attribute name="CATEGORY6" use="optional"/>
+								<xsd:attribute name="CATEGORY5" use="optional"/>
+								<xsd:attribute name="CATEGORY4" use="optional"/>
+								<xsd:attribute name="CATEGORY3" use="optional"/>
+								<xsd:attribute name="CATEGORY2" use="optional"/>
+								<xsd:attribute name="CATEGORY1" use="optional"/>
+								<xsd:attribute name="CATEGORY0" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="STATUS" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="STATUS9" use="optional"/>
+								<xsd:attribute name="STATUS8" use="optional"/>
+								<xsd:attribute name="STATUS7" use="optional"/>
+								<xsd:attribute name="STATUS6" use="optional"/>
+								<xsd:attribute name="STATUS5" use="optional"/>
+								<xsd:attribute name="STATUS4" use="optional"/>
+								<xsd:attribute name="STATUS3" use="optional"/>
+								<xsd:attribute name="STATUS2" use="optional"/>
+								<xsd:attribute name="STATUS1" use="optional"/>
+								<xsd:attribute name="STATUS0" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="PERSON" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="PERSON9" use="optional"/>
+								<xsd:attribute name="PERSON8" use="optional"/>
+								<xsd:attribute name="PERSON7" use="optional"/>
+								<xsd:attribute name="PERSON6" use="optional"/>
+								<xsd:attribute name="PERSON5" use="optional"/>
+								<xsd:attribute name="PERSON4" use="optional"/>
+								<xsd:attribute name="PERSON3" use="optional"/>
+								<xsd:attribute name="PERSON2" use="optional"/>
+								<xsd:attribute name="PERSON1" use="optional"/>
+								<xsd:attribute name="PERSON0" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ALLOCATEDBY" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="ALLOCATEDBY9" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY8" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY7" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY6" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY5" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY4" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY3" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY2" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY1" use="optional"/>
+								<xsd:attribute name="ALLOCATEDBY0" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="VERSION" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="VERSION9" use="optional"/>
+								<xsd:attribute name="VERSION8" use="optional"/>
+								<xsd:attribute name="VERSION7" use="optional"/>
+								<xsd:attribute name="VERSION6" use="optional"/>
+								<xsd:attribute name="VERSION5" use="optional"/>
+								<xsd:attribute name="VERSION4" use="optional"/>
+								<xsd:attribute name="VERSION3" use="optional"/>
+								<xsd:attribute name="VERSION2" use="optional"/>
+								<xsd:attribute name="VERSION1" use="optional"/>
+								<xsd:attribute name="VERSION0" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="PROJECTNAME" use="required"/>
+					<xsd:attribute name="NEXTUNIQUEID" use="required"/>
+					<xsd:attribute name="LASTMODIFIED" use="required"/>
+					<xsd:attribute name="FILEVERSION" use="required"/>
+					<xsd:attribute name="FILENAME" use="optional"/>
+					<xsd:attribute name="FILEFORMAT" use="required"/>
+					<xsd:attribute name="EARLIESTDUEDATE" use="required"/>
+					<xsd:attribute name="CUSTOMCOMMENTSTYPE"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="taskType">
+		<xsd:sequence>
+			<xsd:element name="TASK" nillable="true" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="subtaskType">
+							<xsd:attribute name="ALLOCATEDBY"/>
+							<xsd:attribute name="CALCCOST"/>
+							<xsd:attribute name="CALCPERCENTDONE"/>
+							<xsd:attribute name="CALCTIMEESTIMATE"/>
+							<xsd:attribute name="CALCTIMESPENT"/>
+							<xsd:attribute name="CATEGORY"/>
+							<xsd:attribute name="CATEGORY1"/>
+							<xsd:attribute name="CATEGORY2"/>
+							<xsd:attribute name="CATEGORY3"/>
+							<xsd:attribute name="CATEGORY4"/>
+							<xsd:attribute name="CATEGORY5"/>
+							<xsd:attribute name="CATEGORY6"/>
+							<xsd:attribute name="CATEGORY7"/>
+							<xsd:attribute name="CATEGORY8"/>
+							<xsd:attribute name="CATEGORY9"/>
+							<xsd:attribute name="COLOR"/>
+							<xsd:attribute name="COMMENTS"/>
+							<xsd:attribute name="COMMENTSTYPE"/>
+							<xsd:attribute name="COST"/>
+							<xsd:attribute name="CREATIONDATE"/>
+							<xsd:attribute name="CREATIONDATESTRING"/>
+							<xsd:attribute name="CUSTOMCOMMENTS"/>
+							<xsd:attribute name="DEPENDS"/>
+							<xsd:attribute name="DEPENDS1"/>
+							<xsd:attribute name="DEPENDS2"/>
+							<xsd:attribute name="DEPENDS3"/>
+							<xsd:attribute name="DEPENDS4"/>
+							<xsd:attribute name="DEPENDS5"/>
+							<xsd:attribute name="DEPENDS6"/>
+							<xsd:attribute name="DEPENDS7"/>
+							<xsd:attribute name="DEPENDS8"/>
+							<xsd:attribute name="DEPENDS9"/>
+							<xsd:attribute name="DONEDATE"/>
+							<xsd:attribute name="DONEDATESTRING"/>
+							<xsd:attribute name="DUEDATE"/>
+							<xsd:attribute name="DUEDATESTRING"/>
+							<xsd:attribute name="EXTERNALID"/>
+							<xsd:attribute name="FILEREFPATH"/>
+							<xsd:attribute name="FLAG"/>
+							<xsd:attribute name="ICONINDEX"/>
+							<xsd:attribute name="ID"/>
+							<xsd:attribute name="LASTMOD"/>
+							<xsd:attribute name="LASTMODSTRING"/>
+							<xsd:attribute name="NUMCATEGORY"/>
+							<xsd:attribute name="NUMDEPENDS"/>
+							<xsd:attribute name="NUMPERSON"/>
+							<xsd:attribute name="PERCENTDONE"/>
+							<xsd:attribute name="PERSON"/>
+							<xsd:attribute name="PERSON1"/>
+							<xsd:attribute name="PERSON2"/>
+							<xsd:attribute name="PERSON3"/>
+							<xsd:attribute name="PERSON4"/>
+							<xsd:attribute name="PERSON5"/>
+							<xsd:attribute name="PERSON6"/>
+							<xsd:attribute name="PERSON7"/>
+							<xsd:attribute name="PERSON8"/>
+							<xsd:attribute name="PERSON9"/>
+							<xsd:attribute name="POS"/>
+							<xsd:attribute name="PRIORITY"/>
+							<xsd:attribute name="PRIORITYCOLOR"/>
+							<xsd:attribute name="PRIORITYWEBCOLOR"/>
+							<xsd:attribute name="RISK"/>
+							<xsd:attribute name="STARTDATE"/>
+							<xsd:attribute name="STARTDATESTRING"/>
+							<xsd:attribute name="STATUS"/>
+							<xsd:attribute name="TEXTCOLOR"/>
+							<xsd:attribute name="TEXTWEBCOLOR"/>
+							<xsd:attribute name="TIMEESTIMATE"/>
+							<xsd:attribute name="TIMEESTUNITS"/>
+							<xsd:attribute name="TIMESPENT"/>
+							<xsd:attribute name="TIMESPENTUNITS"/>
+							<xsd:attribute name="TITLE"/>
+							<xsd:attribute name="VERSION"/>
+							<xsd:attribute name="WEBCOLOR"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="subtaskType">
+		<xsd:sequence>
+			<xsd:element name="TASK" type="xsd:anyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

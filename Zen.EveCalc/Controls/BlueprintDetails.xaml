@@ -16,7 +16,8 @@
     <Grid DataContext="{Binding ElementName=ctrl,Path=Blueprint}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition  />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -60,8 +61,14 @@
 
         <TextBlock Grid.Row="9">Объем результата</TextBlock>
             <coreControls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="9" Grid.Column="1" />
+        <GroupBox Header="Прочее" Grid.Column="2" Grid.RowSpan="10">
+            <StackPanel>
+                <CheckBox Content="Избранное" IsChecked="{Binding Favorite,Mode=TwoWay}"></CheckBox>
+                <CheckBox Content="К копированию" IsChecked="{Binding ReadyToCopy,Mode=TwoWay}"></CheckBox>
+            </StackPanel>
+        </GroupBox>
         
-        <GroupBox Grid.Row="10" Grid.ColumnSpan="2" Header="Материалы">
+        <GroupBox Grid.Row="10" Grid.ColumnSpan="3" Header="Материалы">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

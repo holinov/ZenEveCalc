@@ -15,6 +15,8 @@ namespace Zen.EveCalc.DataModel
         private int _runs;
         private BlueprintDto _blueprintDto;
         private float _sellPrice1;
+        private bool _favorite;
+        private bool _readyToCopy;
 
         public Blueprint()
         {
@@ -130,6 +132,28 @@ namespace Zen.EveCalc.DataModel
         public int TotalAmmount
         {
             get { return Runs*Produces; }
+        }
+
+        public bool Favorite
+        {
+            get { return _favorite; }
+            set
+            {
+                if (value.Equals(_favorite)) return;
+                _favorite = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ReadyToCopy
+        {
+            get { return _readyToCopy; }
+            set
+            {
+                if (value.Equals(_readyToCopy)) return;
+                _readyToCopy = value;
+                OnPropertyChanged();
+            }
         }
 
         public void UpdatePrices(IRepositoryWithGuid<EveItem> repository)
