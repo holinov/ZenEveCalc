@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
-using Autofac;
 using Raven.Imports.Newtonsoft.Json;
 using Zen.EveCalc.Controls;
 using Zen.EveCalc.Core;
+using Zen.EveCalc.Core.DataStorage;
 using Zen.EveCalc.Core.DataStorage.Raven;
 using Zen.EveCalc.Core.DataStorage.Raven.Embeeded;
 using Zen.EveCalc.Core.DataStorage.Raven.Repositories;
@@ -32,8 +34,17 @@ namespace Zen.EveCalc
                 .AddModule<ControlsModule>()
                 //.Configure(b=>b.RegisterAssemblyTypes(typeof(BlueprintsList).Assembly).AsSelf().AsImplementedInterfaces())
                 .Build();
+            var a = new DateTime(2010,1,1);
+            var b = new DateTime(2010, 1, 1);
+            var res = Object.ReferenceEquals(a, b);
 
             Core = core;
+
+            Core.Resolve<TaskFactory>().StartNew(() =>
+                {
+                    var apiTest = Core.Resolve<EveCentalApi>();
+                    apiTest.UpdatePricesInDb();
+                });
         }
 
         public static AppCore Core { get; set; }
@@ -46,8 +57,8 @@ namespace Zen.EveCalc
 
             var res = GetWholeResponce(url);
 
-            ExpandoObject dynamic=new ExpandoObject();
-            var res1=JsonConvert.DeserializeAnonymousType(res,dynamic);
+            /*ExpandoObject dynamic=new ExpandoObject();
+            var res1=JsonConvert.DeserializeAnonymousType(res,dynamic);*/
 
             var matInfo = JsonConvert.DeserializeObject<MaterialDetails>(res);
 
@@ -59,7 +70,7 @@ namespace Zen.EveCalc
 
         private static void UpdateMaterials(MaterialDetails matInfo)
         {
-
+            var matIds = new List<int>();
             using (var repos=Core.Resolve<IEveItemRepository>())
             {
                 if (matInfo != null)
@@ -82,10 +93,14 @@ namespace Zen.EveCalc
                         material.Name = materialDto.materialTypeName;
                         material.Volume = materialDto.materialVolume;
                         material.MaterialDto = materialDto;
-                        material.EveId = materialDto.materialTypeID;
-                        repos.SaveChanges();
+                        material.EveId = materialDto.materialTypeID;  
+                        matIds.Add(material.EveId);
                     }
+                repos.SaveChanges();
+
             }
+
+            Core.Resolve<EveCentalApi>().UpdatePrices(matIds);
         }
         
 
@@ -110,20 +125,6 @@ namespace Zen.EveCalc
                 wholePage = "";
             }
             return wholePage;
-        }
-    }
-
-    public class ControlsModule:Module
-    {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                   .AsSelf()
-                   .AsImplementedInterfaces()
-                   .PropertiesAutowired();
-
-            builder.RegisterType<EveItemRepository>().AsImplementedInterfaces();
-            //builder.RegisterType<EveItemRepository>().AsImplementedInterfaces();
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zen.EveCalc.Controls.Models;
 using Zen.EveCalc.Core;
 using Zen.EveCalc.Core.DataStorage.Raven.Repositories;
 using Zen.EveCalc.DataModel;

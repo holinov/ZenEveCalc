@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel" xmlns:controls="clr-namespace:Zen.EveCalc.Controls"
+             xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel"
+             xmlns:coreControls="clr-namespace:Zen.EveCalc.CoreControls;assembly=Zen.EveCalc.CoreControls"
+             xmlns:controls="clr-namespace:Zen.EveCalc.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Name="ctrl">
 
+    <UserControl.Resources>
+        <system:String x:Key="iskFormat">{0:0,0.00 ISK}</system:String>
+        <system:String x:Key="volumeFormat">{0:0,0}</system:String>
+    </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=ctrl,Path=Blueprint}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -38,22 +44,22 @@
 
 
         <TextBlock Grid.Row="4">Цена единицы</TextBlock>
-        <controls:SplittingBox Suffix=" ISK"  FloatValue="{Binding ItemProductionPrice,Mode=OneWay}"  Grid.Row="4" Grid.Column="1" />
+        <coreControls:SplittingBox Suffix=" ISK"  FloatValue="{Binding ItemProductionPrice,Mode=OneWay}"  Grid.Row="4" Grid.Column="1" />
 
         <TextBlock Grid.Row="5">Цена закупки</TextBlock>
-        <controls:SplittingBox Suffix=" ISK"  FloatValue="{Binding TotalPrice,Mode=OneWay}"  Grid.Row="5" Grid.Column="1" ></controls:SplittingBox>
+        <coreControls:SplittingBox Suffix=" ISK"  FloatValue="{Binding TotalPrice,Mode=OneWay}"  Grid.Row="5" Grid.Column="1" ></coreControls:SplittingBox>
 
         <TextBlock Grid.Row="6">Прибыль</TextBlock>
-        <controls:SplittingBox FormatType="PositiveGreen" Suffix=" ISK" FloatValue="{Binding Income,Mode=OneWay}"  Grid.Row="6" Grid.Column="1" />
+        <coreControls:SplittingBox FormatType="PositiveGreen" Suffix=" ISK" FloatValue="{Binding Income,Mode=OneWay}"  Grid.Row="6" Grid.Column="1" />
         
         <TextBlock Grid.Row="7">Прибыль (%)</TextBlock>
-        <controls:SplittingBox FormatType="PositiveGreen" Suffix=" %" FloatValue="{Binding IncomePercent,Mode=OneWay}"  Grid.Row="7" Grid.Column="1" />
+        <coreControls:SplittingBox FormatType="PositiveGreen" Suffix=" %" FloatValue="{Binding IncomePercent,Mode=OneWay}"  Grid.Row="7" Grid.Column="1" />
 
         <TextBlock Grid.Row="8">Объем материалов</TextBlock>
-        <controls:SplittingBox FloatValue="{Binding TotaMaterialsVolume,Mode=OneWay}"  Grid.Row="8" Grid.Column="1" />
+        <coreControls:SplittingBox FloatValue="{Binding TotaMaterialsVolume,Mode=OneWay}"  Grid.Row="8" Grid.Column="1" />
 
         <TextBlock Grid.Row="9">Объем результата</TextBlock>
-            <controls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="9" Grid.Column="1" />
+            <coreControls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="9" Grid.Column="1" />
         
         <GroupBox Grid.Row="10" Grid.ColumnSpan="2" Header="Материалы">
             <Grid>
@@ -72,7 +78,16 @@
                     <Button Click="AddClick" VerticalAlignment="Bottom" Height="22">Добавить</Button>
                     <Button Click="DownloadMaterialsClick" VerticalAlignment="Bottom" Height="22">Получить материалы</Button>
                 </ToolBar>
-                <ListBox Grid.Row="1" MaxHeight="500" ItemsSource="{Binding Materials}" Name="matList">
+                <DataGrid Name="matGrid" Grid.Row="1" ItemsSource="{Binding Materials}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" IsReadOnly="True" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Необходимо" Binding="{Binding Ammount}"/>
+                        <DataGridTextColumn Header="Итоговая цена" IsReadOnly="True"  Binding="{Binding TotalPrice,StringFormat={StaticResource iskFormat}}" />
+                        <DataGridTextColumn Header="Объем перевозки" IsReadOnly="True"  Binding="{Binding TotalVolume,StringFormat={StaticResource volumeFormat}}"/>
+                        <DataGridTextColumn Header="Надо закупить" IsReadOnly="True"  Binding="{Binding TotalCount,StringFormat={StaticResource volumeFormat}}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ListBox Visibility="Hidden" Grid.Row="1" MaxHeight="500" ItemsSource="{Binding Materials}" Name="matList">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="dataModel:Material">
                             <StackPanel Orientation="Horizontal">

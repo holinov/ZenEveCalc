@@ -12,9 +12,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Raven.Client.Linq;
+using Zen.EveCalc.Controls.Models;
 using Zen.EveCalc.Core.DataStorage;
 using Zen.EveCalc.Core.DataStorage.Raven.Repositories;
 using Zen.EveCalc.DataModel;
+using Zen.EveCalc.DataModel.EveDB;
 
 namespace Zen.EveCalc.Controls
 {
@@ -93,9 +95,10 @@ namespace Zen.EveCalc.Controls
             {
                 var bpdto = mats.invBlueprintTypeDto;
                 Blueprint.EveId = bpdto.blueprintTypeID;
+                var prices = App.Core.Resolve<EveCentalApi>().GetItemPriceById(new[] { bpdto.productTypeID },true);
                 Blueprint.Produces = bpdto.productPortionSize;
                 Blueprint.BlueprintDto = bpdto;
-
+                Blueprint.SellPrice = prices[bpdto.productTypeID];
                 Blueprint.Materials.Clear();
 
                 using (var repos = App.Core.Resolve<IEveItemRepository>())

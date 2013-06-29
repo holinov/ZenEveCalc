@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Raven.Imports.Newtonsoft.Json;
 using Zen.EveCalc.DataModel;
 
-namespace Zen.EveCalc.Controls
+namespace Zen.EveCalc.Controls.Models
 {
     public class Materials: ObservableCollection<Material>
     {

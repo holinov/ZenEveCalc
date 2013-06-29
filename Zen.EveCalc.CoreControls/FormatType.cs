@@ -1,4 +1,4 @@
-﻿namespace Zen.EveCalc.Controls
+﻿namespace Zen.EveCalc.CoreControls
 {
     public enum FormatType
     {

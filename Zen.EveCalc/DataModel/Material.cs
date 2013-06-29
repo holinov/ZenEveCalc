@@ -13,6 +13,7 @@ namespace Zen.EveCalc.DataModel
         private float _ammount;
         private Blueprint _blueprint;
         private float _volume;
+        private float _totalCount;
 
         public Material()
         {
@@ -44,8 +45,7 @@ namespace Zen.EveCalc.DataModel
             {
                 if (value.Equals(_price)) return;
                 _price = value;
-                OnPropertyChanged();
-                OnPropertyChanged("TotalPrice");
+                Recount();
             }
         }
 
@@ -57,6 +57,7 @@ namespace Zen.EveCalc.DataModel
                 if (value == _name) return;
                 _name = value;
                 OnPropertyChanged();
+                Recount();
             }
         }
 
@@ -68,14 +69,26 @@ namespace Zen.EveCalc.DataModel
                 if (value.Equals(_ammount)) return;
                 _ammount = value;
                 OnPropertyChanged();
-                OnPropertyChanged("TotalPrice");
-                OnPropertyChanged("TotalVolume");
+                Recount();
             }
+        }
+
+        private void Recount()
+        {
+            OnPropertyChanged("TotalRunPrice");
+            OnPropertyChanged("TotalPrice");
+            OnPropertyChanged("TotalVolume");
+            OnPropertyChanged("TotalCount");
+        }
+
+        public float TotalRunPrice
+        {
+            get { return Price*Ammount; }
         }
 
         public float TotalPrice
         {
-            get { return Price*Ammount; }
+            get { return Price * TotalCount; }
         }
 
         [JsonIgnore]
@@ -87,10 +100,11 @@ namespace Zen.EveCalc.DataModel
                 if (Equals(value, _blueprint)) return;
                 _blueprint = value;
                 OnPropertyChanged();
+                Recount();
             }
         }
 
-        public float TotalVolume { get { return Volume*Ammount; } }
+        public float TotalVolume { get { return Volume*TotalCount; } }
         public float Volume
         {
             get { return _volume; }
@@ -99,7 +113,19 @@ namespace Zen.EveCalc.DataModel
                 if (value.Equals(_volume)) return;
                 _volume = value;
                 OnPropertyChanged();
-                OnPropertyChanged("TotalVolume");
+                Recount();
+            }
+        }
+
+        public float TotalCount
+        {
+            get { return _totalCount; }
+            set
+            {
+                if (value.Equals(_totalCount)) return;
+                _totalCount = value;
+                OnPropertyChanged();
+                Recount();
             }
         }
 

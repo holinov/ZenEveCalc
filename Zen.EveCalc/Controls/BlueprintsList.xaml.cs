@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zen.EveCalc.Controls.Models;
 using Zen.EveCalc.Core;
 using Zen.EveCalc.Core.DataStorage;
 using Zen.EveCalc.Core.DataStorage.Raven.Repositories;
@@ -77,7 +78,8 @@ namespace Zen.EveCalc.Controls
                 {
                     var bp = new Blueprint()
                         {
-                            Name = string.IsNullOrEmpty(bpTextBox.Text) ? "Новый чертеж" : bpTextBox.Text.Trim()
+                            Name = string.IsNullOrEmpty(bpTextBox.Text) ? "Новый чертеж" : bpTextBox.Text.Trim(),
+                            Runs = 1
                         };
                     _blueprints.Add(bp);
                     BPList.SelectedItem = bp;
@@ -141,7 +143,7 @@ namespace Zen.EveCalc.Controls
                                     {
                                         ProductionInfo prodIndo = curBp.MakeProduct();
                                         prodIndo.ProducingIn = "Kino";
-                                        prodIndo.SellingIn = "Jita";
+                                        prodIndo.SellingIn = "Jita";                                     
                                         repos.Store(prodIndo);
                                         repos.SaveChanges();
                                     }
@@ -168,5 +170,25 @@ namespace Zen.EveCalc.Controls
         {
             Load();
         }
+    }
+
+    public class CreateJobCommand:ICommand
+    {
+        private readonly Func<IRepositoryWithGuid<ProductionJob>> _prodInfoRepos;
+        public bool CanExecute(object parameter)
+        {
+            return parameter is ProductionInfo;
+        }
+
+        public void Execute(object parameter)
+        {
+            /*var prodInfo=(ProductionInfoRepository)
+            using (var repos=_prodInfoRepos())
+            {
+                
+            }*/
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 }

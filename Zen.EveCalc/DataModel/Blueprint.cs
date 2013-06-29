@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Zen.EveCalc.Controls;
+using Zen.EveCalc.Controls.Models;
 using Zen.EveCalc.Core.DataStorage;
 using Zen.EveCalc.DataModel.EveDB;
 
@@ -10,9 +11,10 @@ namespace Zen.EveCalc.DataModel
     {
         private Materials _materials;
         private int _produces = 1;
-        private int _sellPrice;
+        private float _sellPrice;
         private int _runs;
         private BlueprintDto _blueprintDto;
+        private float _sellPrice1;
 
         public Blueprint()
         {
@@ -55,13 +57,13 @@ namespace Zen.EveCalc.DataModel
             }
         }
 
-        public int SellPrice
+        public float SellPrice
         {
-            get { return _sellPrice; }
+            get { return _sellPrice1; }
             set
             {
-                if (value == _sellPrice) return;
-                _sellPrice = value;
+                if (value.Equals(_sellPrice1)) return;
+                _sellPrice1 = value;
                 OnPropertyChanged();
                 Recount();
             }
@@ -79,17 +81,17 @@ namespace Zen.EveCalc.DataModel
 
         public float ItemProductionPrice
         {
-            get { return Materials.Sum(m => m.TotalPrice)/Produces; }
+            get { return Materials.Sum(m => m.TotalRunPrice) / Produces; }
         }
 
         public float TotalPrice
         {
-            get { return Materials.Sum(m => m.TotalPrice)*Runs; }
+            get { return Materials.Sum(m => m.TotalRunPrice) * Runs; }
         }
 
         public float Income
         {
-            get { return SellPrice*Runs*Produces - TotalPrice; }
+            get { return SellPrice * Runs * Produces - TotalPrice; }
         }
 
         public float IncomePercent
@@ -99,7 +101,7 @@ namespace Zen.EveCalc.DataModel
 
         public float TotaMaterialsVolume
         {
-            get { return Materials.Sum(m => m.TotalVolume)*Runs; }
+            get { return Materials.Sum(m => m.TotalVolume); }
         }
 
         public float TotaVolume
@@ -137,6 +139,7 @@ namespace Zen.EveCalc.DataModel
             {
                 material.Price = items[material.Id].Price;
                 material.Volume = items[material.Id].Volume;
+                material.TotalCount = material.Ammount*this.Runs;
             }
             Recount();
         }

@@ -6,12 +6,12 @@ namespace Zen.EveCalc.DataModel
     public class ProductionInfo:HasGuidId
     {
         private string _productName;
-        private int _sellPrice;
+        private float _sellPrice;
         private int _sellAmmount;
         private float _materialsTransport;
         private float _productionTransport;
         private float _estimatedIncome;
-        private int _estimatedProfit;
+        private float _estimatedProfit;
         private int _soldOut;
         private float _realProfit;
         private Blueprint _usedBpData;
@@ -29,12 +29,12 @@ namespace Zen.EveCalc.DataModel
             }
         }
 
-        public int SellPrice
+        public float SellPrice
         {
             get { return _sellPrice; }
             set
             {
-                if (value == _sellPrice) return;
+                if (value .Equals(_sellPrice)) return;
                 _sellPrice = value;
                 OnPropertyChanged();
                 RefreshRealProfit();
@@ -85,12 +85,12 @@ namespace Zen.EveCalc.DataModel
             }
         }
 
-        public int EstimatedProfit
+        public float EstimatedProfit
         {
             get { return _estimatedProfit; }
             set
             {
-                if (value == _estimatedProfit) return;
+                if (value .Equals(_estimatedProfit)) return;
                 _estimatedProfit = value;
                 OnPropertyChanged();
             }

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Zen.EveCalc.Controls
+namespace Zen.EveCalc.CoreControls
 {
     public class SplittingBox : TextBlock
     {

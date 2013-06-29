@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Zen.EveCalc.DataModel;
 
-namespace Zen.EveCalc.Controls
+namespace Zen.EveCalc.Controls.Models
 {
     public class ProductionInfoCollection:ObservableCollection<ProductionInfo>
     {

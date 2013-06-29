@@ -46,8 +46,10 @@ namespace Zen.EveCalc
                         var tab = o.AddedItems[0] as TabItem;
                         if (tab != null)
                         {
+                           
                             PageToolbar.Items.Clear();
                             var page = (IPageControl) tab.Tag;
+                            page.Show();
                             if (page.Commands != null)
                                 foreach (var cmd in page.Commands)
                                 {

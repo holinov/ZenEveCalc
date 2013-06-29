@@ -3,39 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Zen.EveCalc.Controls" xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel"
+             xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel"
+             xmlns:coreControls="clr-namespace:Zen.EveCalc.CoreControls;assembly=Zen.EveCalc.CoreControls"
+             xmlns:controls="clr-namespace:Zen.EveCalc.Controls"
+             xmlns:models="clr-namespace:Zen.EveCalc.Controls.Models"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <controls:ProductionReportModel x:Key="Model" />
+        <models:ProductionReportModel x:Key="Model" />
     </UserControl.Resources>
-    <Grid>
-        <DataGrid ItemsSource="{Binding Source={StaticResource Model},Path=Rows}" AutoGenerateColumns="False" Name="ItemsGrid">
+    <Grid  DataContext="{StaticResource Model}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding SaveReports}">Сохранить</Button>
+        </StackPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Path=Rows}" AutoGenerateColumns="False" Name="ItemsGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" IsReadOnly="True" Binding="{Binding ProductName}" />
-                <DataGridTextColumn Header="Производится в" IsReadOnly="True" Binding="{Binding ProducingIn}" />
+                <DataGridTextColumn Header="Производится в" IsReadOnly="False" Binding="{Binding ProducingIn}" />
                 <DataGridTextColumn Header="К продаже" IsReadOnly="True" Binding="{Binding SellAmmount}" />
                 <DataGridTemplateColumn Header="Доход" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="dataModel:ProductionInfo">
-                            <controls:SplittingBox FloatValue="{Binding EstimatedProfit}" Suffix=" ISK" />
+                            <coreControls:SplittingBox FloatValue="{Binding EstimatedProfit}" Suffix=" ISK" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Прибыль" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="dataModel:ProductionInfo">
-                            <controls:SplittingBox FloatValue="{Binding EstimatedIncome}" Suffix=" ISK" />
+                            <coreControls:SplittingBox FloatValue="{Binding EstimatedIncome}" Suffix=" ISK" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Продается в" IsReadOnly="True" Binding="{Binding SellingIn}" />
+                <DataGridTextColumn Header="Продается в" IsReadOnly="False" Binding="{Binding SellingIn}" />
                 <DataGridTextColumn Header="Цена продажи"  Binding="{Binding SellPrice}" />
                 <DataGridTextColumn Header="Продано" Binding="{Binding SoldOut}" />
                 <DataGridTemplateColumn Header="Реальный доход" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="dataModel:ProductionInfo">
-                            <controls:SplittingBox FloatValue="{Binding RealProfit}" Suffix=" ISK" />
+                            <coreControls:SplittingBox FloatValue="{Binding RealProfit}" Suffix=" ISK" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -46,17 +56,17 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Объем перевозки материалов: "/>
-                                <controls:WeightBox FloatValue="{Binding MaterialsTransport}"/>
+                                <coreControls:WeightBox FloatValue="{Binding MaterialsTransport}"/>
                                 <TextBlock Text=". Объем перевозки товара: "/>
-                                <controls:WeightBox FloatValue="{Binding ProductionTransport}"/>
+                                <coreControls:WeightBox FloatValue="{Binding ProductionTransport}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Произведено "></TextBlock>
-                                <controls:ItemsCountBox FloatValue="{Binding UsedBpData.TotalAmmount}" />
+                                <coreControls:ItemsCountBox FloatValue="{Binding UsedBpData.TotalAmmount}" />
                                 <TextBlock Text=". Стоимость производства  "></TextBlock>
-                                <controls:IskBox FloatValue="{Binding UsedBpData.TotalPrice}"/>
+                                <coreControls:IskBox FloatValue="{Binding UsedBpData.TotalPrice}"/>
                                 <TextBlock Text=". Стоимость производства  1 шт "></TextBlock>
-                                <controls:IskBox FloatValue="{Binding UsedBpData.ItemProductionPrice}"/>
+                                <coreControls:IskBox FloatValue="{Binding UsedBpData.ItemProductionPrice}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zen.EveCalc.Controls;
+using Zen.EveCalc.Controls.Models;
 using Zen.EveCalc.DataModel;
 
 namespace Zen.EveCalc.Tests.Core
