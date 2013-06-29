@@ -15,7 +15,7 @@
             <Expander Header="Управление БД" IsExpanded="True">
                 <StackPanel>
                     <Button Command="{Binding ExportDB}">Экспорт БД</Button>
-                    <Button>Импорт БД</Button>                    
+                    <Button Command="{Binding ImportDB}">Импорт БД</Button>                    
                 </StackPanel>
             </Expander>
             <Expander Header="Настройки отчета" IsExpanded="True">

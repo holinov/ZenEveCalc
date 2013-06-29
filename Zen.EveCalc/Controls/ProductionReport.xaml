@@ -16,10 +16,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <!--
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding SaveReports}">Сохранить</Button>
-        </StackPanel>
+        </StackPanel> -->
         <DataGrid Grid.Row="1" ItemsSource="{Binding Path=Rows}" AutoGenerateColumns="False" Name="ItemsGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" IsReadOnly="True" Binding="{Binding ProductName}" />
@@ -71,7 +73,21 @@
                         </StackPanel>
                     </GroupBox>
                 </DataTemplate>
-            </DataGrid.RowDetailsTemplate>            
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
+        <WrapPanel Orientation="Horizontal" Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock Text="Ожидаемый суммарный доход "></TextBlock>
+                <coreControls:IskBox FloatValue="5000"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock Text="Реальный доход: "></TextBlock>
+                <coreControls:IskBox FloatValue="5000"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock Text="В продаже: "></TextBlock>
+                <coreControls:IskBox FloatValue="5000"/>
+            </StackPanel>
+        </WrapPanel>
     </Grid>
 </UserControl>

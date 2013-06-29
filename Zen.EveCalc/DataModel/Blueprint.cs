@@ -44,6 +44,10 @@ namespace Zen.EveCalc.DataModel
                 _runs = value;
                 OnPropertyChanged();
                 Recount();
+                foreach (var material in Materials)
+                {
+                    UpdateTotalAmmount(material);
+                }
             }
         }
 
@@ -163,9 +167,14 @@ namespace Zen.EveCalc.DataModel
             {
                 material.Price = items[material.Id].Price;
                 material.Volume = items[material.Id].Volume;
-                material.TotalCount = material.Ammount*this.Runs;
+                UpdateTotalAmmount(material);
             }
             Recount();
+        }
+
+        private void UpdateTotalAmmount(Material material)
+        {
+            material.TotalCount = material.Ammount*this.Runs;
         }
 
         public ProductionInfo MakeProduct()

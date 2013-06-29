@@ -66,6 +66,11 @@ namespace Zen.EveCalc.Controls
                                     }
                                 }
                         }, 
+                        new PageCommand()
+                        {
+                            Name = "Сохранить",
+                            Command = _model.SaveReports
+                        }, 
                 };
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Zen.EveCalc.Controls
 {
@@ -14,5 +15,7 @@ namespace Zen.EveCalc.Controls
         public string Name { get; set; }
 
         public UIElement Content { get; set; }
+
+        public ICommand Command { get; set; }
     }
 }

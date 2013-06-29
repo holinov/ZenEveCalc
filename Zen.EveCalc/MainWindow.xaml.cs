@@ -63,8 +63,15 @@ namespace Zen.EveCalc
                                             {
                                                 Content = cmd.Name
                                             };
-                                        PageCommand cmd1 = cmd;
-                                        button.Click += (sender, e) => cmd1.Action(page);
+                                        if (cmd.Command != null)
+                                        {
+                                            button.Command = cmd.Command;
+                                        }
+                                        else
+                                        {
+                                            PageCommand cmd1 = cmd;
+                                            button.Click += (sender, e) => cmd1.Action(page);
+                                        }
                                         PageToolbar.Items.Add(button);
                                     }
                                 }
