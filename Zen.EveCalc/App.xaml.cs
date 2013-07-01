@@ -34,9 +34,6 @@ namespace Zen.EveCalc
                 .AddModule<ControlsModule>()
                 //.Configure(b=>b.RegisterAssemblyTypes(typeof(BlueprintsList).Assembly).AsSelf().AsImplementedInterfaces())
                 .Build();
-            var a = new DateTime(2010,1,1);
-            var b = new DateTime(2010, 1, 1);
-            var res = Object.ReferenceEquals(a, b);
 
             Core = core;
 

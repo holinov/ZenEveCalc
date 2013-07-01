@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EFA25
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.EveCalc.CoreControls", "Zen.EveCalc.CoreControls\Zen.EveCalc.CoreControls.csproj", "{291C8D44-82F7-4952-895F-940321E91C7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zen.EveCalc.EveDB", "Zen.EveCalc.EveDB\Zen.EveCalc.EveDB.csproj", "{7C724937-9023-44FD-A9C8-FB0C21B153B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{291C8D44-82F7-4952-895F-940321E91C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{291C8D44-82F7-4952-895F-940321E91C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{291C8D44-82F7-4952-895F-940321E91C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C724937-9023-44FD-A9C8-FB0C21B153B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C724937-9023-44FD-A9C8-FB0C21B153B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C724937-9023-44FD-A9C8-FB0C21B153B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C724937-9023-44FD-A9C8-FB0C21B153B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

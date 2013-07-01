@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +35,11 @@ namespace Zen.EveCalc.Controls
                 var mats = repos.GetAll().Select(it => new Material(it));
                Materials = new Materials(mats);
             }
+
+            /*var asmName = typeof (BlueprintDetails).Assembly.GetName();
+            Image _image=new Image();
+            string packUri = "pack://application:,,,/" + asmName+ ";component/0_32.png";
+            _image.Source = new ImageSourceConverter().ConvertFromString(packUri) as ImageSource;*/
 //matSelect.ItemsSource = Materials;
         }
 
@@ -89,7 +96,7 @@ namespace Zen.EveCalc.Controls
         }
 
         public void DownloadMaterialsClick(object sender, RoutedEventArgs e)
-        {
+        {            
             var mats=App.LoadMaterials(Blueprint);
             if (mats != null)
             {
@@ -119,4 +126,12 @@ namespace Zen.EveCalc.Controls
             }
         }
     }
+
+    /*public class EveIdToImageConverter : TypeConverter
+    {
+        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        {
+           // ResourceManager.
+        }
+    }*/
 }

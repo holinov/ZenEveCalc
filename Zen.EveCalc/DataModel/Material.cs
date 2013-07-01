@@ -14,6 +14,7 @@ namespace Zen.EveCalc.DataModel
         private Blueprint _blueprint;
         private float _volume;
         private float _totalCount;
+        private int _eveId;
 
         public Material()
         {
@@ -126,6 +127,17 @@ namespace Zen.EveCalc.DataModel
                 _totalCount = value;
                 OnPropertyChanged();
                 Recount();
+            }
+        }
+
+        public int EveId
+        {
+            get { return _eveId; }
+            set
+            {
+                if (value == _eveId) return;
+                _eveId = value;
+                OnPropertyChanged();
             }
         }
 

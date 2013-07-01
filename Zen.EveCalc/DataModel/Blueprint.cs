@@ -167,6 +167,7 @@ namespace Zen.EveCalc.DataModel
             {
                 material.Price = items[material.Id].Price;
                 material.Volume = items[material.Id].Volume;
+                material.EveId = items[material.Id].EveId;
                 UpdateTotalAmmount(material);
             }
             Recount();

@@ -6,12 +6,15 @@
              xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel"
              xmlns:coreControls="clr-namespace:Zen.EveCalc.CoreControls;assembly=Zen.EveCalc.CoreControls"
              xmlns:controls="clr-namespace:Zen.EveCalc.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:eveDb="clr-namespace:Zen.EveCalc.EveDB;assembly=Zen.EveCalc.EveDB"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Name="ctrl">
 
     <UserControl.Resources>
         <system:String x:Key="iskFormat">{0:0,0.00 ISK}</system:String>
         <system:String x:Key="volumeFormat">{0:0,0}</system:String>
+        <eveDb:EveIdToImageConverter x:Key="typeImageConverter"/>
+        <eveDb:EveIdToImageConverter Small="true"  x:Key="typeImageSmallConverter"/>
     </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=ctrl,Path=Blueprint}">
         <Grid.ColumnDefinitions>
@@ -65,6 +68,7 @@
             <StackPanel>
                 <CheckBox Content="Избранное" IsChecked="{Binding Favorite,Mode=TwoWay}"></CheckBox>
                 <CheckBox Content="К копированию" IsChecked="{Binding ReadyToCopy,Mode=TwoWay}"></CheckBox>
+                <Image Source="{Binding EveId,Converter={StaticResource typeImageConverter}}" />
             </StackPanel>
         </GroupBox>
         
@@ -87,7 +91,15 @@
                 </ToolBar>
                 <DataGrid Name="matGrid" Grid.Row="1" ItemsSource="{Binding Materials}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" IsReadOnly="True" Binding="{Binding Name}"/>
+                        <DataGridTemplateColumn Header="Материал" IsReadOnly="True" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="dataModel:Material">
+
+                                        <Image ToolTip="{Binding Name}" Source="{Binding Path=EveId,Converter={StaticResource typeImageSmallConverter}}" />
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Необходимо" Binding="{Binding Ammount}"/>
                         <DataGridTextColumn Header="Итоговая цена" IsReadOnly="True"  Binding="{Binding TotalPrice,StringFormat={StaticResource iskFormat}}" />
                         <DataGridTextColumn Header="Объем перевозки" IsReadOnly="True"  Binding="{Binding TotalVolume,StringFormat={StaticResource volumeFormat}}"/>
