@@ -12,7 +12,7 @@
 
     <UserControl.Resources>
         <system:String x:Key="iskFormat">{0:0,0.00 ISK}</system:String>
-        <system:String x:Key="volumeFormat">{0:0,0}</system:String>
+        <system:String x:Key="volumeFormat">{0:0,0.00 m3}</system:String>
         <eveDb:EveIdToImageConverter x:Key="typeImageConverter"/>
         <eveDb:EveIdToImageConverter Small="true"  x:Key="typeImageSmallConverter"/>
     </UserControl.Resources>
@@ -40,8 +40,8 @@
         <TextBlock Grid.Row="1">Цена продажи</TextBlock>
         <TextBox Text="{Binding SellPrice}"  Grid.Row="1" Grid.Column="1" ></TextBox>
 
-        <TextBlock Grid.Row="2">Производит за запуск</TextBlock>
-        <TextBox Text="{Binding Produces}"  Grid.Row="2" Grid.Column="1" ></TextBox>
+        <TextBlock Grid.Row="2" Text="Производит за запуск "/>
+        <TextBlock Text="{Binding Produces}"  Grid.Row="2" Grid.Column="1" ></TextBlock>
 
         <TextBlock Grid.Row="3">Количество запусков</TextBlock>
         <TextBox Text="{Binding Runs}"  Grid.Row="3" Grid.Column="1" ></TextBox>
@@ -66,9 +66,9 @@
             <coreControls:SplittingBox FloatValue="{Binding TotaVolume,Mode=OneWay}"  Grid.Row="9" Grid.Column="1" />
         <GroupBox Header="Прочее" Grid.Column="2" Grid.RowSpan="10">
             <StackPanel>
+                <Image Source="{Binding EveId,Converter={StaticResource typeImageConverter}}" />
                 <CheckBox Content="Избранное" IsChecked="{Binding Favorite,Mode=TwoWay}"></CheckBox>
                 <CheckBox Content="К копированию" IsChecked="{Binding ReadyToCopy,Mode=TwoWay}"></CheckBox>
-                <Image Source="{Binding EveId,Converter={StaticResource typeImageConverter}}" />
             </StackPanel>
         </GroupBox>
         
@@ -94,16 +94,14 @@
                         <DataGridTemplateColumn Header="Материал" IsReadOnly="True" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="dataModel:Material">
-
                                         <Image ToolTip="{Binding Name}" Source="{Binding Path=EveId,Converter={StaticResource typeImageSmallConverter}}" />
-
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Необходимо" Binding="{Binding Ammount}"/>
+                        <DataGridTextColumn Header="Необходимо" Binding="{Binding Ammount}" />
+                        <DataGridTextColumn Header="Надо закупить" IsReadOnly="True"  Binding="{Binding TotalCount,StringFormat={StaticResource volumeFormat}}"/>
                         <DataGridTextColumn Header="Итоговая цена" IsReadOnly="True"  Binding="{Binding TotalPrice,StringFormat={StaticResource iskFormat}}" />
                         <DataGridTextColumn Header="Объем перевозки" IsReadOnly="True"  Binding="{Binding TotalVolume,StringFormat={StaticResource volumeFormat}}"/>
-                        <DataGridTextColumn Header="Надо закупить" IsReadOnly="True"  Binding="{Binding TotalCount,StringFormat={StaticResource volumeFormat}}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <ListBox Visibility="Hidden" Grid.Row="1" MaxHeight="500" ItemsSource="{Binding Materials}" Name="matList">

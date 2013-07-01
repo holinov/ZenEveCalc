@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataModel="clr-namespace:Zen.EveCalc.DataModel"
-             xmlns:local="clr-namespace:Zen.EveCalc.Controls" x:Class="Zen.EveCalc.Controls.BlueprintsList"
+             xmlns:local="clr-namespace:Zen.EveCalc.Controls"
+             xmlns:eveDb="clr-namespace:Zen.EveCalc.EveDB;assembly=Zen.EveCalc.EveDB"
+             x:Class="Zen.EveCalc.Controls.BlueprintsList"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <eveDb:EveIdToImageConverter Small="true"  x:Key="typeImageSmallConverter"/>
+   </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -15,7 +20,10 @@
         <ListBox x:Name="BPList" MinWidth="100">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="dataModel:Blueprint">
-                    <TextBlock Text="{Binding Name}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Path=EveId,Converter={StaticResource typeImageSmallConverter}}"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
