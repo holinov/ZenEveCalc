@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <system:String x:Key="iskFormat">{0:0,0.00 ISK}</system:String>
         <system:String x:Key="volumeFormat">{0:0,0.00 m3}</system:String>
+        <system:String x:Key="countFormat">{0:0,0.00}</system:String>
         <eveDb:EveIdToImageConverter x:Key="typeImageConverter"/>
         <eveDb:EveIdToImageConverter Small="true"  x:Key="typeImageSmallConverter"/>
     </UserControl.Resources>
@@ -99,7 +100,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Необходимо" Binding="{Binding Ammount}" />
-                        <DataGridTextColumn Header="Надо закупить" IsReadOnly="True"  Binding="{Binding TotalCount,StringFormat={StaticResource volumeFormat}}"/>
+                        <DataGridTextColumn Header="Надо закупить" IsReadOnly="True"  Binding="{Binding TotalCount,StringFormat={StaticResource countFormat}}"/>
                         <DataGridTextColumn Header="Итоговая цена" IsReadOnly="True"  Binding="{Binding TotalPrice,StringFormat={StaticResource iskFormat}}" />
                         <DataGridTextColumn Header="Объем перевозки" IsReadOnly="True"  Binding="{Binding TotalVolume,StringFormat={StaticResource volumeFormat}}"/>
                     </DataGrid.Columns>

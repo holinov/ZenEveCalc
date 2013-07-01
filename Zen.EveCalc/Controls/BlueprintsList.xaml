@@ -11,6 +11,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <eveDb:EveIdToImageConverter Small="true"  x:Key="typeImageSmallConverter"/>
+        <local:FavoriteBorderConverter x:Key="borderConverter"/>
    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,10 +21,16 @@
         <ListBox x:Name="BPList" MinWidth="100">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="dataModel:Blueprint">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Path=EveId,Converter={StaticResource typeImageSmallConverter}}"/>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5"/>
-                    </StackPanel>
+                    <Border BorderBrush="Gold" BorderThickness="{Binding Favorite,Converter={StaticResource borderConverter}}">
+                        <Border BorderBrush="Green" BorderThickness="{Binding ReadyToCopy,Converter={StaticResource borderConverter}}">
+                            <Border BorderBrush="Red" BorderThickness="0,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Path=EveId,Converter={StaticResource typeImageSmallConverter}}"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Border>
+                        </Border>   
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
