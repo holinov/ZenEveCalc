@@ -95,6 +95,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlsModule.cs" />
+    <Compile Include="Controls\CreateJobCommand.cs" />
+    <Compile Include="Controls\FavoriteBorderConverter.cs" />
     <Compile Include="Controls\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +110,7 @@
     <Compile Include="Controls\Models\JobsModelData.cs" />
     <Compile Include="Controls\Models\Materials.cs" />
     <Compile Include="Controls\Models\ProductionInfoCollection.cs" />
+    <Compile Include="Controls\Models\SaveListCommand.cs" />
     <Compile Include="Controls\ProductionReport.xaml.cs">
       <DependentUpon>ProductionReport.xaml</DependentUpon>
     </Compile>
@@ -278,7 +281,6 @@
   <ItemGroup>
     <Resource Include="TestData.xml" />
   </ItemGroup>
-  
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

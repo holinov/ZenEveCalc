@@ -77,16 +77,16 @@
         </DataGrid>
         <WrapPanel Orientation="Horizontal" Grid.Row="2">
             <StackPanel Orientation="Horizontal" Margin="3">
-                <TextBlock Text="Ожидаемый суммарный доход "></TextBlock>
-                <coreControls:IskBox FloatValue="5000"/>
+                <TextBlock Text="Ожидаемый суммарный доход: "></TextBlock>
+                <coreControls:IskBox FloatValue="{Binding TotalProfit}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock Text="Ожидаемая реальная прибыть: "></TextBlock>
+                <coreControls:IskBox FloatValue="{Binding TotalIncome}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <TextBlock Text="Реальный доход: "></TextBlock>
-                <coreControls:IskBox FloatValue="5000"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="3">
-                <TextBlock Text="В продаже: "></TextBlock>
-                <coreControls:IskBox FloatValue="5000"/>
+                <coreControls:IskBox FloatValue="{Binding TotalRealProfit}"/>
             </StackPanel>
         </WrapPanel>
     </Grid>

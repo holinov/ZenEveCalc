@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -171,40 +168,5 @@ namespace Zen.EveCalc.Controls
         {
             Load();
         }
-    }
-
-    public class FavoriteBorderConverter:IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-
-            var val = (bool) value;
-            return val ? new Thickness(5, 0, 0, 0) : new Thickness(0);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class CreateJobCommand:ICommand
-    {
-        private readonly Func<IRepositoryWithGuid<ProductionJob>> _prodInfoRepos;
-        public bool CanExecute(object parameter)
-        {
-            return parameter is ProductionInfo;
-        }
-
-        public void Execute(object parameter)
-        {
-            /*var prodInfo=(ProductionInfoRepository)
-            using (var repos=_prodInfoRepos())
-            {
-                
-            }*/
-        }
-
-        public event EventHandler CanExecuteChanged;
     }
 }
